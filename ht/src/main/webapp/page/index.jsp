@@ -209,7 +209,7 @@
 								</div>
 								<div class="ins">
 									<input type="password" id="newpwd"
-										placeholder="密码名由6-16个数字、字母组成" /><span class=""></span>
+										placeholder="密码名由6-16个数字、字母组成" onBlur="passwordBlur()"/><span class=""></span>
 								</div>
 								<div class="ins">
 									<input type="email" id="email" placeholder="您的邮箱账户" /><span

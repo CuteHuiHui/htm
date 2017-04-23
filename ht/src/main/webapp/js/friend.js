@@ -1,11 +1,12 @@
 /////////////////////////////////点击选择图片///////////////////////////
 function chgPic(obj){
 	$(".show_img").attr("src", window.URL.createObjectURL(obj.files[0]));
+	$(".show_img").css({margin:'-10px',width:'100px',height:'100px'});
 }
 
 /////////////////////////////////评论的显示///////////////////////////
 var count= 0 ;
-commentShow(3,1);
+commentShow(3,1);  
 function commentShow(pageS,currP){
 	$.get("friend/PaginationCommentShow",{"pageS":pageS,"currP":currP},function(data){
 		var commentStr = "";

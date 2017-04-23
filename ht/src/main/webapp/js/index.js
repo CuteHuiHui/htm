@@ -187,6 +187,10 @@ function userRegister(){
 	},"json");
 }
 
+function passwordBlur(){
+	alert("hhhhhhh");
+}
+
 function sendCode(){
 	var uemail= $.trim($("#email").val());
 	if(!uemail.match(/^[a-z0-9]+([._]*[a-z0-9]+)*@[a-z0-9]+([_.][a-z0-9]+)+$/gi)){

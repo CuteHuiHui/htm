@@ -359,7 +359,7 @@
 .news{
     width: 100%;
     height:40px;
-    margin-top:30px;
+    margin-top:70px;
     border-bottom: 2px solid #2DC17A;
     font-family:"微软雅黑";
     font-size:20px;
@@ -379,7 +379,7 @@
     cursor: pointer !important;
 }
 .add_img{
-    /*margin-right:20px;*/
+    margin-right:20px;
     position: relative;
     border: none;
     top:10px;
