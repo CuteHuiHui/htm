@@ -67,17 +67,9 @@
 								class="col-lg-2 col-md-2 col-sm-3 col-xs-4">歌手</a></li>
 							<li><a href="page/special.jsp"
 								class="col-lg-2 col-md-2  col-xs-2  hidden-sm hidden-xs">专辑</a></li>
-							<li><a href="page/mv.jsp"
-								class="col-lg-2 col-md-2  hidden-xs  hidden-sm hidden-xs">MV</a></li>
 							<li><a href="page/friend.jsp"
 								class="col-lg-2 hidden-md hidden-sm hidden-xs">朋友</a></li>
 						</ul>
-						<!-- <form  id="search" class="navbar-form navbar-left" role="search">
-							<div class="form-group">
-								<input type="text" class="form-control" placeholder="单曲/歌手/专辑">
-							</div>
-							<button type="submit" class="btn btn-default">查询</button>
-						</form> -->
 					</div>
 				</div>
 			</nav>
