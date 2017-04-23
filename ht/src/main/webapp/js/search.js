@@ -5,20 +5,20 @@ function searchSong(){
 	if(soname!=null && soname!=""){
 		$.get("song/refer/"+soname,function(data){
 			var str = "";
-			str+='<div class="music_list"><div class="row" style="margin-left: 0px; margin-top: 2px">'+
-			'<div class="list_no_1 col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>'+
-			'<div class="list_name_! col-lg-7 col-md-7 col-sm-11 col-xs-11" '+
-			'style="border-left: 1px solid #E1E1E1;"><span class="m_name_1">歌曲名</span></div>'+
-			'<div class="list_play_1 col-lg-2 col-md-2 hidden-sm hidden-xs"'+
-			'style="border-left: 1px solid #E1E1E1;">歌手</div>'+
-			'<div class=";list_add_1 col-lg-2 col-md-2 hidden-sm hidden-xs"'+
-			'style="border-left: 1px solid #E1E1E1;">时长</div></div>'+
-			'<div class="S_box"></div></div></div>';
-			$(".special").html(str);
 			if(data.length==0){
 				str+="<h3>暂无相关单曲</h3>"
 					$(".special").html(str);
 			}else{
+				str+='<div class="music_list"><div class="row" style="margin-left: 0px; margin-top: 2px">'+
+				'<div class="list_no_1 col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>'+
+				'<div class="list_name_! col-lg-7 col-md-7 col-sm-11 col-xs-11" '+
+				'style="border-left: 1px solid #E1E1E1;"><span class="m_name_1">歌曲名</span></div>'+
+				'<div class="list_play_1 col-lg-2 col-md-2 hidden-sm hidden-xs"'+
+				'style="border-left: 1px solid #E1E1E1;">歌手</div>'+
+				'<div class=";list_add_1 col-lg-2 col-md-2 hidden-sm hidden-xs"'+
+				'style="border-left: 1px solid #E1E1E1;">时长</div></div>'+
+				'<div class="S_box"></div></div></div>';
+				$(".special").html(str);
 				var songStr="";
 				for(var i=0; i<data.length;i++){
 					songStr+='<div class="row"><div  class="list_no col-lg-1 col-md-1 col-sm-1 col-xs-1">'+(i+1)+'</div>'
