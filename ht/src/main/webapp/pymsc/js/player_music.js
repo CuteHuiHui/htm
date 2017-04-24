@@ -188,35 +188,38 @@ function sync(){
 			}
 		});
 	}
+
 	var interval;
 	//歌词移动
 	function solyricMove(){
-			//歌词高亮
-			var time = $(".u-time").html().split("/");
-			var musicTime = parseFloat((time[0].split(":")[0]*60))+parseFloat(time[0].split(":")[1]);
-			var endTime =parseFloat(time[1].split(":")[0]*60)+parseFloat(time[1].split(":")[1]);
-			for (var i = 0, l = str.length; i < l; i++) { 
-				var strTime = parseFloat(str[i][0]);
-				if(musicTime <= strTime && (musicTime+1) > strTime ){
-					$('.show-solyric ul li').css('top',i*(-40)+200+'px'); //让歌词向上移动
-					$('.show-solyric ul li:nth-child('+(i+1)+')').css('color','#39D68B'); //高亮显示当前播放的哪一句歌词    
-					$('.show-solyric ul li:nth-child('+(i)+')').css('color','#C4DEFA');
-					continue;
-				}
-			}    
-			if(musicTime != 0 && musicTime >= endTime){ //判断当前播放的音乐是否播放完毕    
-				$('.show-solyric ul').empty(); //清空歌词    
-				$(".show-music-title h1").html("");
-				$(".show-music-title p").html("");
-				loadPage();
-				clearInterval(interval);
-				return;
-			}    
-	}
-	interval = setInterval(solyricMove, 1000);
-	
-}
 
+		//歌词高亮
+		var time = $(".u-time").html().split("/");
+		var musicTime = parseFloat((time[0].split(":")[0]*60))+parseFloat(time[0].split(":")[1]);
+		var endTime =parseFloat(time[1].split(":")[0]*60)+parseFloat(time[1].split(":")[1]);
+		for (var i = 0, l = str.length; i < l; i++) { 
+			var strTime = parseFloat(str[i][0]);
+			
+			if(musicTime <= strTime && (musicTime+1) > strTime){
+				$('.show-solyric ul li:nth-child('+(i-1)+')').css("margin-top","-20px");
+			}
+			if(musicTime <= strTime && (musicTime+1) > strTime && str[i][1]!=null && str[i][1] != ""){
+				$('.show-solyric ul li').css('color','#C4DEFA');
+				$('.show-solyric ul li:nth-child('+(i+1)+')').css('color','#39D68B'); //高亮显示当前播放的哪一句歌词    
+				continue;
+			}
+		}    
+		if(musicTime != 0 && musicTime >= endTime){ //判断当前播放的音乐是否播放完毕    
+			$('.show-solyric ul').html(""); //清空歌词    
+			$(".show-music-title h1").html("");
+			$(".show-music-title p").html("");
+			clearInterval(interval);
+			loadPage();
+			return;
+		}    
+	}
+	interval = setInterval(solyricMove, 500);
+}
 /************************播放列表图标**************************/
 var i;
 $(".play-music-list").click( function () { 
