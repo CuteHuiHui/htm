@@ -92,17 +92,18 @@ function loadMusicList(){
 		var listInfo =  {title:data[0].soname,singer:data[0].singer.sgname,cover:data[0].sopicPath,src:data[0].sopath,spid:data[0].spid,sgid:data[0].singer.sgid,solyricPath:data[0].solyricPath};
 		musicList.push(listInfo);
 		if(controlStr[0].split("=")[1]=="player"){//播放
+
 		}
 		if(controlStr[0].split("=")[1]=="add"){//添加到播放列表
+
 		}
-		
 		//加载到musicList列表去
 		new SMusic({
 			musicList : musicList
 		});
-		
+
 		sync();
-		
+
 	},"json");
 }
 loadMusicList();
@@ -141,76 +142,80 @@ function sync(){
 			return a[0] - b[0];    
 		});
 		return result;    
-	}  
+	} 
 
-	//获取歌名和歌手
-	var songName = $(".u-music-title strong").html();
-	var singer = $(".u-music-title small").html().replace("&nbsp;","");
 
-	if(songName != null && songName != ""){
-		$(".show-music-title h1").html(songName);
-	}
-	if(singer != null && singer !=""){
-		$(".show-music-title p").append('<label style="color: #C4DEFA">歌手&nbsp;:&nbsp;</label><a style="color: #FFF" href="javascript:void(0)">'+singer+'</a>');
-	}
-	$(".show-music-title h1").change(function(){
-		alert(12);
-	});
+	loadPage();
+	//加载到页面
+	function loadPage(){
+		//获取歌名和歌手
+		var songName = $(".u-music-title strong").html();
+		var singer = $(".u-music-title small").html().replace("&nbsp;","");
 
-	//判断歌手和歌名不能为空
-	if(songName != null && songName != "" && singer != null && singer !=""){
-		//判断时当前播放的歌
-		for (var i = 0; i < musicList.length; i++) {
-			if($.trim(musicList[i].singer) == $.trim(singer) && $.trim(musicList[i].title) == $.trim(songName)){
-				var sgname = musicList[i].src.split("/");
-				sgname = sgname[sgname.length-1].split(".")[0];
-				fn(sgname);
+		if(songName != null && songName != ""){
+			$(".show-music-title h1").html(songName);
+		}
+		if(singer != null && singer !=""){
+			$(".show-music-title p").append('<label style="color: #C4DEFA">歌手&nbsp;:&nbsp;</label><a style="color: #FFF" href="javascript:void(0)">'+singer+'</a>');
+		}
+
+		//判断歌手和歌名不能为空
+		if(songName != null && songName != "" && singer != null && singer !=""){
+			//判断时当前播放的歌
+			for (var i = 0; i < musicList.length; i++) {
+				if($.trim(musicList[i].singer) == $.trim(singer) && $.trim(musicList[i].title) == $.trim(songName)){
+					var sgname = musicList[i].src.split("/");
+					sgname = sgname[sgname.length-1].split(".")[0];
+					fn(sgname);
+				}
 			}
 		}
 	}
-
-
+	var str = null;
+	//歌词同步操作
 	function fn(sgname){ 
 		$.get('/upload/solyric/'+sgname+'.lrc',function(data){
 			if(data != null && data != ""){
 				$('.show-solyric ul').html("");
-				var str=parseLyric(data);
+				str=parseLyric(data);//歌词规则化
 				//歌词显示
-				for(var i=0,li;i<str.length;i++){   
+				for(var i=0,li;i<str.length;i++){ 
 					li=$('<li>'+str[i][1]+'</li>');    
 					$('.show-solyric ul').append(li);    
-				}    
-				/*$('#aud')[0].ontimeupdate=function(){//视屏 音频当前的播放位置发生改变时触发    
-					for (var i = 0, l = str.length; i < l; i++) {    
-						if (this.currentTime 当前播放的时间 > str[i][0]) {    
-							//显示到页面    
-							$('#gc ul').css('top',-i*40+200+'px'); //让歌词向上移动    
-							$('#gc ul li').css('color','#fff');    
-							$('#gc ul li:nth-child('+(i+1)+')').css('color','red'); //高亮显示当前播放的哪一句歌词    
-						}    
-					}    
-					if(this.ended){ //判断当前播放的音乐是否播放完毕    
-						var songslen=$('.songs_list li').length;    
-						for(var i= 0,val;i<songslen;i++){    
-							val=$('.songs_list li:nth-child('+(i+1)+')').text();    
-							if(val==sgname){    
-								i=(i==(songslen-1))?1:i+2;    
-								sgname=$('.songs_list li:nth-child('+i+')').text(); //音乐播放完毕之后切换下一首音乐    
-								$('#gc ul').empty(); //清空歌词    
-								$('#aud').attr('src','music/'+sgname+'.mp3');    
-								fn(sgname);    
-								return;    
-							}    
-						}    
-					}    
-				};    */
+				}
+				//歌词的移动
+				solyricMove();
 			}
 		});
-	} 
-
+	}
+	var interval;
+	//歌词移动
+	function solyricMove(){
+			//歌词高亮
+			var time = $(".u-time").html().split("/");
+			var musicTime = parseFloat((time[0].split(":")[0]*60))+parseFloat(time[0].split(":")[1]);
+			var endTime =parseFloat(time[1].split(":")[0]*60)+parseFloat(time[1].split(":")[1]);
+			for (var i = 0, l = str.length; i < l; i++) { 
+				var strTime = parseFloat(str[i][0]);
+				if(musicTime <= strTime && (musicTime+1) > strTime ){
+					$('.show-solyric ul li').css('top',i*(-40)+200+'px'); //让歌词向上移动
+					$('.show-solyric ul li:nth-child('+(i+1)+')').css('color','#39D68B'); //高亮显示当前播放的哪一句歌词    
+					$('.show-solyric ul li:nth-child('+(i)+')').css('color','#C4DEFA');
+					continue;
+				}
+			}    
+			if(musicTime != 0 && musicTime >= endTime){ //判断当前播放的音乐是否播放完毕    
+				$('.show-solyric ul').empty(); //清空歌词    
+				$(".show-music-title h1").html("");
+				$(".show-music-title p").html("");
+				loadPage();
+				clearInterval(interval);
+				return;
+			}    
+	}
+	interval = setInterval(solyricMove, 1000);
 	
 }
-
 
 /************************播放列表图标**************************/
 var i;
@@ -225,4 +230,5 @@ $(".play-music-list").click( function () {
 		i=true;
 	}
 });
+
 
