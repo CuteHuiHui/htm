@@ -91,7 +91,7 @@ function loadMusicList(){
 	$.get("song/refsong/"+songid,function(data){
 		var listInfo =  {title:data[0].soname,singer:data[0].singer.sgname,cover:data[0].sopicPath,src:data[0].sopath,spid:data[0].spid,sgid:data[0].singer.sgid,solyricPath:data[0].solyricPath};
 		musicList.push(listInfo);
-		if(controlStr[0].split("=")[1]=="player"){//播放
+		if(controlStr[0].split("=")[1]=="player"){//播放  直接把位置移到第一位
 
 		}
 		if(controlStr[0].split("=")[1]=="add"){//添加到播放列表
@@ -102,7 +102,7 @@ function loadMusicList(){
 			musicList : musicList
 		});
 
-		sync();
+		sync();//歌曲播放和歌词显示
 
 	},"json");
 }
