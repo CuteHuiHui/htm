@@ -14,12 +14,13 @@
 </head>
 <body>
 	<header>
-		<div id="head">
+	<nav id="head">
 			<nav class="navbar navbar-default" id="lognav">
 				<div class="container">
 					<div class="navbar-header navbar-left">
-						<a href="" class="navbar-brand"><img src="images/log.png"></a>
-						<a href="" class="navbar-brand"><h3>幻听音乐</h3></a>
+						<a href="javascript:void(0)" class="navbar-brand"><img
+							src="images/log.png"></a> <a href="javascript:void(0)"
+							class="navbar-brand"><h3>幻听音乐</h3></a>
 					</div>
 					<ul class="nav navbar-nav navbar-right" id="nav_a">
 						<c:choose>
@@ -59,14 +60,13 @@
 				<div class="container">
 					<div class="row">
 						<ul class="nav navbar-nav navbar-left" id="topnav">
-							<li><a href="page/index.jsp"
-								class="col-lg-2 col-md-2 col-sm-3 col-xs-4" id="">首页</a></li>
-							<li><div class="mydiv hidden-md hidden-sm hidden-xs"></div><a href="page/singer.jsp"
+							<li><div class="mydiv hidden-md hidden-sm hidden-xs"></div>
+								<a href="page/index.jsp"
+								class="col-lg-2 col-md-2 col-sm-3 col-xs-4">首页</a></li>
+							<li><a href="page/singer.jsp"
 								class="col-lg-2 col-md-2 col-sm-3 col-xs-4">歌手</a></li>
 							<li><a href="page/special.jsp"
 								class="col-lg-2 col-md-2  col-xs-2  hidden-sm hidden-xs">专辑</a></li>
-							<li><a href="page/mv.jsp"
-								class="col-lg-2 col-md-2  hidden-xs  hidden-sm hidden-xs">MV</a></li>
 							<li><a href="page/friend.jsp"
 								class="col-lg-2 hidden-md hidden-sm hidden-xs">朋友</a></li>
 						</ul>
@@ -79,7 +79,7 @@
 					</div>
 				</div>
 			</nav>
-		</div>
+		</nav>
 	</header>
 	<article>
 		<div id="mygroup">
@@ -147,44 +147,32 @@
 		<div class="book">
 
 			<div class="page_left">
-				<ul class="singer_list__list" id="picture">
-
-				</ul>
+				<ul class="singer_list__list" id="picture"></ul>
 				<p class="p1">1</p>
 			</div>
 
 
 			<div class="page_right">
-				<span><ul class="singer_list__list" id="picture1">
-
-					</ul>
+				<span><ul class="singer_list__list" id="picture1"></ul>
 					<p class="p2">2</p> </span> <span>
-					<ul class="singer_list__list" id="picture2">
-
-					</ul>
+					
+					<ul class="singer_list__list" id="picture2"></ul>
 					<p class="p1">3</p>
 				</span>
-
 			</div>
 
 
 			<div class="page_right">
-				<span><ul class="singer_list__list" id="picture3">
-
-
-					</ul>
-
-					<p class="p2">4</p></span> <span><ul class="singer_list__list"
-						id="picture4">
-
-
-
-					</ul>
+				<span><ul class="singer_list__list" id="picture3"></ul>
+					<p class="p2">4</p></span> 
+					
+					<span><ul class="singer_list__list" id="picture4"></ul>
 					<p class="p1">5</p></span>
 			</div>
+			
 			<div class="page_right_end">
-				<span><ul class="singer_list__list" id="picture5">
-					</ul>
+				<span>
+					<ul class="singer_list__list" id="picture5"></ul>
 					<p class="p2">End</p></span>
 			</div>
 		</div>

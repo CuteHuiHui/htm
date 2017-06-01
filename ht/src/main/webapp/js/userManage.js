@@ -15,7 +15,7 @@ function showUserManage(pageS,currP){
 				img="images/img.png";
 			}
 			if(ucondition==1){
-				var strOptions='<select id="uconditionValue" style="border:1px solid #c0c0c0; width: 70px; height:25px;"><option value="1" >'+"可用"+'</option><option value="0">'+"不可用"+'</option></select>';
+				var strOptions='<select onchange="btnChange(this[selectedIndex].value);" id="uconditionValue" style="border:1px solid #c0c0c0; width: 70px; height:25px;"><option value="1" >'+"可用"+'</option><option value="0">'+"不可用"+'</option></select>';
 			}else{
 				var strOptions='<select id="uconditionValue" style="border:1px solid #c0c0c0; width: 70px; height:25px;"><option value="0" >'+"不可用"+'</option><option value="1">'+"可用"+'</option></select>';
 			}
@@ -186,7 +186,7 @@ function removeReferUser(userid){
 
 
 
-//修改用户的状态
+/*//修改用户的状态
 function modifyUser(userid){
 	alert(userid);
 	
@@ -212,7 +212,7 @@ function modifyUser(userid){
 		}
 		
 	},"json");
-}
+}*/
 
 
 

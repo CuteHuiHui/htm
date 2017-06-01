@@ -25,7 +25,6 @@ function init(){
 	var userid= location.href.split("=")[1];
 	if(userid != null && userid!=""){
 		$.post("user/showUser/"+userid,function(data){
-			alert(JSON.stringify(data));
 			$("#userid").val(data.userid);
 			$("#labelid").html(data.userid);
 			$("#uname").val(data.uname);

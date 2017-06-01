@@ -78,9 +78,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<!-- 单曲查询模糊(根据soname) -->
-	<select id="findSongByName" parameterType="string" resultType="Song">
+	<resultMap type="Song" id="SongMap">
+		<id column="soid" property="soid"/>
+		<result column="soname" property="soname"/>
+		<result column="sopicPath" property="sopicPath"/>
+		<result column="sopubTime" property="sopubTime"/>
+		<result column="solyricPath" property="solyricPath"/>
+		<result column="sopath" property="sopath"/>
+		<result column="soduration" property="soduration"/>
+		<result column="vipDownload" property="vipDownload"/>
+		<association property="singer" column="sgid" javaType="Singer" select="findSgname"></association>
+	</resultMap>
+	<select id="findSongByName" parameterType="string" resultMap="SongMap">
 		select * from song where soname like '%'||#{soname}||'%'
 	</select>
+	<select id="findSgname" parameterType="int" resultType="Singer">
+		select sgname from singer where sgid=#{sgid}
+	</select>
+	
 	
 	<select id="findSongName" parameterType="Song" resultType="Song">
 		select * from song where soname = #{soname} and sgid =#{sgid} and spid = #{spid}
